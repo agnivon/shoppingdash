@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', {title: "Register" }); %>
+
+    <body>
+        <div class="container d-flex justify-content-center">
+            <div class="card w-50 shadow">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Register</h1>
+                    <!-- Toast -->
+                    <div class="toast align-items-center text-white bg-success border-0
+                    position-fixed" role="alert"
+                        aria-live="assertive" aria-atomic="true" id="responseToast">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                Hello, world! This is a toast message.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <!-- Registration Form -->
+                    <form action="/user/register" class="fs-5" method="post" id="regForm">
+                        <div class="m-4 form-floating">
+                            <div class="m-4 form-floating">
+                                <input type="name" class="form-control" id="name" name="name"
+                                    placeholder="Enter your name" required>
+                                <label for="name" class="form-label">Name</label>
+                            </div>
+                            <div class="m-4 form-floating">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="name@example.com" required>
+                                <label for="email" class="form-label">Email address</label>
+                            </div>
+                            <div class="m-4 form-floating">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Enter password" required>
+                                <label for="password" class="form-label">Password</label>
+                            </div>
+                            <div class="m-4 form-floating">
+                                <input type="password" class="form-control" id="cpassword" name="cpassword"
+                                    placeholder="Repeat password" required>
+                                <label for="cpassword" class="form-label">Confirm password</label>
+                            </div>
+                            <div class="m-4">
+                                <button type="submit" class="btn btn-dark btn-lg w-100">Register</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

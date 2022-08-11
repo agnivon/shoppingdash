@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', {title: 'Shop'}); %>
+<body>
+    <%- include('partials/nav', {cp: 'shop', admin}); %>
+    <div class="container my-3">
+        <h1>Product List</h1>
+        <table id="productTable" class="table table-responsive text-center display cell-border">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Price</th>
+            </thead>
+            <tbody>
+                <% products.forEach((product)=> { %>
+                    <tr>
+                        <td>
+                            <%=product._id%>
+                        </td>
+                        <td class="product-name">
+                            <%=product.name%>
+                        </td>
+                        <td class="product-details">
+                            <%=product.details%>
+                        </td>
+                        <td class="product-price">
+                            <%=product.price%>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

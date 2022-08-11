@@ -1,0 +1,19 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Shopping Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link <% if(cp === 'shop') {%> active <%} %>" href="shop">Shop</a>
+                <% if(admin) { %> 
+                    <a class="nav-link <% if(cp === 'admin') {%> active <%} %>" href="admin">Admin</a>
+                <% } %>
+                <a class="nav-link" href="user/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>

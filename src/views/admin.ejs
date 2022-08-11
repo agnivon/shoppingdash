@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head', {title: 'Admin' }); %>
+<body>
+    <%- include('partials/nav', {cp: 'admin', admin: true }); %>
+    <!-- Users Table-->
+    <div class="container my-3">
+        <h1>User List</h1>
+        <table id="userTable" class="table table-responsive text-center display cell-border">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <% data.users.forEach((user)=> { %>
+                    <tr>
+                        <td class="user-id">
+                            <%=user._id%>
+                        </td>
+                        <td class="user-name">
+                            <%=user.name%>
+                        </td>
+                        <td class="user-email">
+                            <%=user.email%>
+                        </td>
+                        <td class="user-role">
+                            <%=user.role%>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning update-user" id="<%=user._id%>">
+                                Update User
+                            </button>
+                            <button class="btn btn-danger delete-user" id="<%=user._id%>">
+                                Delete User
+                            </button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <div class="container d-flex justify-content-center">
+            <button class="btn btn-success w-50 add-user">Add User</button>
+        </div>
+    </div>
+    <!-- Products Table -->
+    <div class="container my-3">
+        <h1>Product List</h1>
+        <table id="productTable" class="table table-responsive text-center display cell-border">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <% data.products.forEach((product)=> { %>
+                    <tr>
+                        <td>
+                            <%=product._id%>
+                        </td>
+                        <td class="product-name">
+                            <%=product.name%>
+                        </td>
+                        <td class="product-details">
+                            <%=product.details%>
+                        </td>
+                        <td class="product-price">
+                            <%=product.price%>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning update-product" id="<%=product.id%>">
+                                Update Product
+                            </button>
+                            <button class="btn btn-danger delete-product" id="<%=product.id%>">
+                                Delete Product
+                            </button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <div class="container d-flex justify-content-center">
+            <button class="btn btn-success w-50 add-product">Add Product</button>
+        </div>
+    </div>
+    <!-- User Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" id="userForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="user-name" name="name" placeholder="Enter Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="user-email" name="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select class="form-select" aria-label="Default select example" id="user-role" name="role" required>
+                                <option value="customer">Customer</option>
+                                <option value="admin">Admin</option>
+                            </select>                        
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="userForm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" id="productForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="product-name" name="name" placeholder="Enter product name"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="product-details" class="form-label">Product Details</label>
+                            <textarea class="form-control" id="product-details" name="details" rows="3" required placeholder="Enter product details"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="product-price" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="product-price" name="price" placeholder="0.00" step="0.01" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="productForm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Toast -->
+    <div class="toast align-items-center text-white border-0 position-fixed" id="responseToast" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Hello, world! This is a toast message.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</body>
+</html>
